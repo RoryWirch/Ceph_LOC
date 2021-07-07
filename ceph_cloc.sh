@@ -12,12 +12,10 @@ CLOC_REPORT="cloc_report.yaml"
 cloc_hash()
 {
     hash=$1
-
     cd ceph
     cloc . --git $hash --yaml --out=$TEMP_YAML
 
     printf "hash:\"${hash}\"\n" >> $BASE_DIR/$CLOC_REPORT
-
     while IFS= read -r line
     do
         if [ "$line" != "---" ]
