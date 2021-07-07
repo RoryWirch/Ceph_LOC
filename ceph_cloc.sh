@@ -3,10 +3,10 @@ BASE_DIR=$(pwd)
 FILE="test_hashes.txt"
 TEMP_YAML="temp_yaml.yaml"
 CLOC_REPORT="cloc_report.yaml"
+TOTAL=`wc -l < $FILE`
+CURRENT=0
 
-#Uncomment after testing
-#should also check that shell scripts are executable
-#sh ./setup.sh
+sh ./setup.sh
 
 # Runs cloc on a given hash, formats yaml output and adds to cloc report
 cloc_hash()
@@ -37,4 +37,6 @@ do
     else
         cloc_hash $hash
     fi
+    CURRENT=$(($CURRENT + 1))
+    echo "($CURRENT / $TOTAL) hashes cloc'd"
 done < $FILE
