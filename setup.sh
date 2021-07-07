@@ -1,13 +1,18 @@
 #!/bin/sh
+#This setup script will make sure the ceph git repo is up to date and pulls 
+#all SHA1 refs from the repo
 REPO="git@github.com:ceph/ceph.git"
+FILE="hashes.txt"
 
 #Update or clone the ceph repo
 if [ -d ceph ]
 then
-	echo "ceph exists"
 	cd ceph
 	git pull --ff-only
 else
-	echo "ceph does not exist"
 	git clone $REPO
 fi
+
+#Get SHA1's from ceph repo
+git show-ref -s > $FILE
+mv $FILE ..
