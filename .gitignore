@@ -1,2 +1,5 @@
 ceph
 hashes.txt
+.vscode
+data
+venv
